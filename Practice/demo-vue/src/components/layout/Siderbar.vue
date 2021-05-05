@@ -25,14 +25,14 @@
           <span class="sidebar__item-promotion t-icon-menu"></span>
           <span class="sidebar__item-text">Khuyến mại</span>
         </a>
-        <a href="#" class="sidebar__item">
-          <span class="sidebar__item-merchandise t-icon-menu"></span>
+        <a href="#" class="sidebar__item active">
+          <span class="sidebar__item-management t-icon-menu"></span>
           <span class="sidebar__item-text">Quản lý cửa hàng</span>
         </a>
       </div>
       <div class="sidebar__bottom">
         <a href="#" class="sidebar__item">
-          <span class="sidebar__item-img t-icon-menu"></span>
+          <span class="sidebar__item-merchandise t-icon-menu"></span>
           <span class="sidebar__item-text">Hàng hóa</span>
         </a>
       </div>
@@ -51,7 +51,7 @@
     background-position: 4px 9px;
   } @else if $suffix == purchase {
     background-position: 0 -33px;
-  } @else if $suffix == proomotion {
+  } @else if $suffix == promotion {
     background-position: 0 -196px;
   } @else if $suffix == management {
     background-position: 0 -233px;
@@ -59,6 +59,13 @@
     background-position: 0 -350px;
   }
 }
+
+/** Định dạng background-color */
+$bg-default: #2b3173;
+
+$bg-active: #1e235a;
+
+$bg-hover: #1e245a;
 
 $icon-menu: (
   ic1: home,
@@ -72,49 +79,52 @@ $icon-menu: (
 .sidebar {
   width: 150px;
   height: 100vh;
-  background-color: #2b3173;
+  background-color: $bg-default;
   white-space: nowrap;
   z-index: 1;
 
-  &__logo {
+  .sidebar__logo {
     width: 150px;
     height: 52px;
-    background-color: #1e235a;
+
+    .sidebar__logo-img {
+      position: absolute;
+      width: 150px;
+      height: 50px;
+      background-image: url("../../assets/images/Logo_Full_White.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position-y: 3px;
+    }
   }
 
-  &__logo-img {
-    position: absolute;
-    width: 150px;
-    height: 50px;
-    background-image: url("../../assets/images/Logo_Full_White.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-y: 3px;
-  }
-
-  &__main {
+  .sidebar__main {
     width: 100%;
     height: calc(100vh - 52px);
+
+    .sidebar__list {
+      width: 100%;
+      max-height: calc(100% - 52px);
+      overflow-y: auto;
+    }
   }
-  &__list {
-    width: 100%;
-    max-height: calc(100% - 52px);
-    overflow-y: auto;
-  }
-  &__item {
+
+  .sidebar__item {
     width: 100%;
     height: 40px;
     position: relative;
     display: flex;
     align-items: center;
-
+    margin-bottom: 4px;
+    color: #aaacc7;
+    
     &:hover {
-      background-color: #1e235a;
-      color: #fff;
+      background-color: $bg-hover;
+      color: #ffffff;
       cursor: pointer;
     }
   }
-  
+
   .t-icon-menu {
     position: absolute;
     height: 26px;
@@ -129,7 +139,7 @@ $icon-menu: (
       @include bg-img($ic);
     }
   }
-  &__item-text {
+  .sidebar__item-text {
     height: 26px;
     width: 100%;
     text-align: left;
@@ -137,9 +147,12 @@ $icon-menu: (
     line-height: 24px;
   }
 
-  &__bottom {
+  .sidebar__bottom {
     border-top: 1px solid #1e235a;
-    margin-top: 4px;
   }
+}
+
+.active {
+  background-color: $bg-active;
 }
 </style>
